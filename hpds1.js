@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 let token = `ob_ru4rA-3jw4Senu6AOLCEYdVt0
     ob_ru4gKhCb-kEhE8-2umpY46fwk
     ob_ru4qM-fPxJFAompw9NChwgqpk
@@ -77,18 +79,20 @@ async function sign(openid) {
         // 等待20~40秒
         let waitTime = Math.floor(Math.random() * 20000) + 20000
         console.log(`等待${waitTime / 1000}秒，然后执行观看签到视频：`)
-        await $.wait(waitTime)
+        // await $.wait(waitTime)
 
-        let url2 = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/done&openId=${openid}&app=QRCODEMINI&advId=undefined&type=task_8&check=1&saler=undefined`
-        let urlObject2 = populateUrlObject(url2)
-        await httpRequest('get', urlObject2)
-        let result2 = JSON.parse(httpResult.body)
+        setTimeout(() => {
+            let url2 = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/done&openId=${openid}&app=QRCODEMINI&advId=undefined&type=task_8&check=1&saler=undefined`
+            let urlObject2 = populateUrlObject(url2)
+            await httpRequest('get', urlObject2)
+            let result2 = JSON.parse(httpResult.body)
 
-        if (result2.code == 0) {
-            console.log('观看签到视频成功\n')
-        } else {
-            console.log(result.msg + '\n')
-        }
+            if (result2.code == 0) {
+                console.log('观看签到视频成功\n')
+            } else {
+                console.log(result.msg + '\n')
+            }
+        }, waitTime)
     } else {
         console.log(result.msg + '\n')
     }
@@ -204,20 +208,30 @@ function populateUrlObject(url, body = '') {
 
 async function httpRequest(method, url) {
     httpResult = null
+
     return new Promise((resolve) => {
-        $[method](url, async (err, resp, data) => {
-            try {
-                if (err) {
-                    console.log(`${method}请求失败`);
-                    console.log(JSON.stringify(err));
-                } else {
-                    httpResult = resp;
-                }
-            } catch (e) {
-              console.log(e)
-            } finally {
-                resolve();
-            }
-        });
-    });
+        axios.get(url).then(response => {
+            console.log(response.data)
+            resolve()
+        }).catch(err => {
+            console.log(err)
+        })
+    })
+
+    // return new Promise((resolve) => {
+    //     $[method](url, async (err, resp, data) => {
+    //         try {
+    //             if (err) {
+    //                 console.log(`${method}请求失败`);
+    //                 console.log(JSON.stringify(err));
+    //             } else {
+    //                 httpResult = resp;
+    //             }
+    //         } catch (e) {
+    //           console.log(e)
+    //         } finally {
+    //             resolve();
+    //         }
+    //     });
+    // });
 }
