@@ -2,7 +2,7 @@ name: 定时执行 JavaScript 文件
 
 on:
   schedule:
-    - cron: '38 8 * * *'
+    - cron: '00 09 * * *'
 
 jobs:
   build:
