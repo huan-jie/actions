@@ -1,0 +1,24 @@
+name: 定时执行 JavaScript 文件
+
+on:
+  schedule:
+    - cron: '30 8 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: node.js setup
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: 安装依赖
+      run: npm ci
+
+    - name: 运行脚本
+      run: node hpds1.js
