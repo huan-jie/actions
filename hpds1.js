@@ -80,19 +80,18 @@ async function sign(openid) {
         let waitTime = Math.floor(Math.random() * 20000) + 20000
         console.log(`等待${waitTime / 1000}秒，然后执行观看签到视频：`)
         // await $.wait(waitTime)
+        await delay(waitTime)
 
-        setTimeout(() => {
-            let url2 = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/done&openId=${openid}&app=QRCODEMINI&advId=undefined&type=task_8&check=1&saler=undefined`
-            let urlObject2 = populateUrlObject(url2)
-            await httpRequest('get', urlObject2)
-            let result2 = JSON.parse(httpResult.body)
+        let url2 = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/done&openId=${openid}&app=QRCODEMINI&advId=undefined&type=task_8&check=1&saler=undefined`
+        let urlObject2 = populateUrlObject(url2)
+        await httpRequest('get', urlObject2)
+        let result2 = JSON.parse(httpResult.body)
 
-            if (result2.code == 0) {
-                console.log('观看签到视频成功\n')
-            } else {
-                console.log(result.msg + '\n')
-            }
-        }, waitTime)
+        if (result2.code == 0) {
+            console.log('观看签到视频成功\n')
+        } else {
+            console.log(result.msg + '\n')
+        }
     } else {
         console.log(result.msg + '\n')
     }
@@ -107,17 +106,17 @@ async function task1(openid) {
         let waitTime = Math.floor(Math.random() * 20000) + 20000
         console.log(`等待${waitTime / 1000}秒，执行第${i}次观看视频得积分：`)
         // await $.wait(waitTime)
-        setTimeout(() => {
-            await httpRequest('get', urlObject)
-            let result = JSON.parse(httpResult.body)
-    
-            if (result.code == 0) {
-                console.log('获取积分成功\n')
-            } else {
-                console.log(result.msg + '，退出任务\n')
-                break
-            }
-        }, waitTime)
+        await delay(waitTime)
+
+        await httpRequest('get', urlObject)
+        let result = JSON.parse(httpResult.body)
+
+        if (result.code == 0) {
+            console.log('获取积分成功\n')
+        } else {
+            console.log(result.msg + '，退出任务\n')
+            break
+        }
     }
 }
 
@@ -130,17 +129,17 @@ async function task2(openid) {
         let waitTime = Math.floor(Math.random() * 20000) + 20000
         console.log(`等待${waitTime / 1000}秒，执行第${i}次收取福利：`)
         // await $.wait(waitTime)
-        setTimeout(() => {
-            await httpRequest('get', urlObject)
-            let result = JSON.parse(httpResult.body)
-    
-            if (result.code == 0) {
-                console.log('获取积分成功\n')
-            } else {
-                console.log(result.msg + '，退出任务\n')
-                break
-            }
-        }, waitTime)
+        await delay(waitTime)
+
+        await httpRequest('get', urlObject)
+        let result = JSON.parse(httpResult.body)
+
+        if (result.code == 0) {
+            console.log('获取积分成功\n')
+        } else {
+            console.log(result.msg + '，退出任务\n')
+            break
+        }
     }
 }
 
@@ -153,17 +152,17 @@ async function task3(openid) {
         let waitTime = Math.floor(Math.random() * 20000) + 20000
         console.log(`等待${waitTime / 1000}秒，执行第${i}次轻松一下：`)
         // await $.wait(waitTime)
-        setTimeout(() => {
-            await httpRequest('get', urlObject)
-            let result = JSON.parse(httpResult.body)
-    
-            if (result.code == 0) {
-                console.log('获取积分成功\n')
-            } else {
-                console.log(result.msg + '，退出任务\n')
-                break
-            }
-        }, waitTime)
+        await delay(waitTime)
+
+        await httpRequest('get', urlObject)
+        let result = JSON.parse(httpResult.body)
+
+        if (result.code == 0) {
+            console.log('获取积分成功\n')
+        } else {
+            console.log(result.msg + '，退出任务\n')
+            break
+        }
     }
 }
 
@@ -176,17 +175,17 @@ async function task6(openid) {
         let waitTime = Math.floor(Math.random() * 20000) + 20000
         console.log(`等待${waitTime / 1000}秒，执行第${i}次赢取更多福利：`)
         // await $.wait(waitTime)
-        setTimeout(() => {
-            await httpRequest('get', urlObject)
-            let result = JSON.parse(httpResult.body)
-    
-            if (result.code == 0) {
-                console.log('获取积分成功\n')
-            } else {
-                console.log(result.msg + '，退出任务\n')
-                break
-            }
-        }, waitTime)
+        await delay(waitTime)
+        
+        await httpRequest('get', urlObject)
+        let result = JSON.parse(httpResult.body)
+
+        if (result.code == 0) {
+            console.log('获取积分成功\n')
+        } else {
+            console.log(result.msg + '，退出任务\n')
+            break
+        }
     }
 }
 
@@ -234,4 +233,10 @@ async function httpRequest(method, url) {
     //         }
     //     });
     // });
+}
+
+async function delay(ms) {
+    return new Promise ((resolve) => {
+        setTimeout(resolve, ms)
+    })
 }
