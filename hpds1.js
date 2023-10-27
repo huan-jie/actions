@@ -8,8 +8,8 @@ let token = `ob_ru4rA-3jw4Senu6AOLCEYdVt0
     ob_ru4suZlnegQWpP18W3BhHsrI4
     ob_ru4rNXqCrcCxVCEVxcmG9lGxQ`
 let tokenArr = []
-let userid = []
-let httpResult = null
+let userid = ［]
+// let httpResult = null
 
 
 !(async () => {
@@ -61,7 +61,7 @@ async function checkToken() {
 async function getInfoNoSign(openid, userIndex) {
     let url = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/getinfonosign&openId=${openid}&app=QRCODEMINI&type=signin&saler=undefined`
     let urlObject = populateUrlObject(url)
-    httpResult　＝　await httpRequest('get', urlObject)
+   await httpRequest('get', urlObject)
     let result = JSON.parse(httpResult.body)
 
     console.log(`=============== 账号[${userIndex}] ===============`)
@@ -73,7 +73,7 @@ async function sign(openid) {
     console.log('执行签到：')
     let url = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/sign&openId=${openid}&app=QRCODEMINI&type=signin&saler=undefined`
     let urlObject = populateUrlObject(url)
-    httpResult　＝　await httpRequest('get', urlObject)
+    await httpRequest('get', urlObject)
     let result = JSON.parse(httpResult.body)
 
     if (result.code == 0) {
@@ -86,7 +86,7 @@ async function sign(openid) {
 
         let url2 = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/done&openId=${openid}&app=QRCODEMINI&advId=undefined&type=task_8&check=1&saler=undefined`
         let urlObject2 = populateUrlObject(url2)
-        httpResult　＝　await httpRequest('get', urlObject2)
+        await httpRequest('get', urlObject2)
         let result2 = JSON.parse(httpResult.body)
 
         if (result2.code == 0) {
@@ -110,7 +110,7 @@ async function task1(openid) {
         // await $.wait(waitTime)
         await delay(waitTime)
 
-        httpResult　＝　await httpRequest('get', urlObject)
+        await httpRequest('get', urlObject)
         let result = JSON.parse(httpResult.body)
 
         if (result.code == 0) {
@@ -133,7 +133,7 @@ async function task2(openid) {
         // await $.wait(waitTime)
         await delay(waitTime)
 
-        httpResult　＝　await httpRequest('get', urlObject)
+        await httpRequest('get', urlObject)
         let result = JSON.parse(httpResult.body)
 
         if (result.code == 0) {
@@ -156,7 +156,7 @@ async function task3(openid) {
         // await $.wait(waitTime)
         await delay(waitTime)
 
-        httpResult　＝　await httpRequest('get', urlObject)
+        await httpRequest('get', urlObject)
         let result = JSON.parse(httpResult.body)
 
         if (result.code == 0) {
@@ -179,7 +179,7 @@ async function task6(openid) {
         // await $.wait(waitTime)
         await delay(waitTime)
         
-        httpResult　＝　await httpRequest('get', urlObject)
+        await httpRequest('get', urlObject)
         let result = JSON.parse(httpResult.body)
 
         if (result.code == 0) {
@@ -208,12 +208,13 @@ function populateUrlObject(url, body = '') {
 }
 
 async function httpRequest(method, urlObject) {
+    let httpResult = null
     return new Promise((resolve) => {
         axios.get(urlObject.url, {
             headers:　urlObject.headers
         }).then(response => {
             console.log(response.data)
-            resolve()
+            resolve(response.data)
         }).catch(err => {
             console.log(err)
         })
