@@ -9,6 +9,8 @@ let token = `ob_ru4rA-3jw4Senu6AOLCEYdVt0
     ob_ru4rNXqCrcCxVCEVxcmG9lGxQ`
 let tokenArr = []
 let userid = []
+let httpResult = null
+
 
 !(async () => {
     if (!await checkToken()) return
@@ -205,11 +207,11 @@ function populateUrlObject(url, body = '') {
     return urlObject;
 }
 
-async function httpRequest(method, url) {
-    httpResult = null
-
+async function httpRequest(method, urlObject) {
     return new Promise((resolve) => {
-        axios.get(url).then(response => {
+        axios.get(urlObject.url, {
+            headers:　urlObject.headers
+        }).then(response => {
             console.log(response.data)
             resolve()
         }).catch(err => {
