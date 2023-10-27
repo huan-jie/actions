@@ -8,7 +8,7 @@ let token = `ob_ru4rA-3jw4Senu6AOLCEYdVt0
     ob_ru4suZlnegQWpP18W3BhHsrI4
     ob_ru4rNXqCrcCxVCEVxcmG9lGxQ`
 let tokenArr = []
-let userid = ［]
+let userid = []
 // let httpResult = null
 
 
