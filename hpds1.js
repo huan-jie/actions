@@ -15,6 +15,7 @@ let httpResult = null
 !(async () => {
     if (!await checkToken()) return
     console.log(`一共${tokenArr.length}个账号\n`)
+    console.log(tokenArr)
     for (let index = 0; index < tokenArr.length; index++) {
         let openid = tokenArr[index]
         let userIndex = index + 1
