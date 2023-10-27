@@ -9,7 +9,7 @@ let token = `ob_ru4rA-3jw4Senu6AOLCEYdVt0
     ob_ru4rNXqCrcCxVCEVxcmG9lGxQ`
 let tokenArr = []
 let userid = []
-// let httpResult = null
+let httpResult = null
 
 
 !(async () => {
