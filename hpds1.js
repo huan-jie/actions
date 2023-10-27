@@ -44,7 +44,7 @@ async function checkToken() {
             console.log('你使用的是\\n分割')
             let tokens = token.split('\n')
             for (let i = 0; i < tokens.length; i++) {
-                tokenArr.push(tokens[i])
+                tokenArr.push(tokens[i].trim())
             }
         } else {
             tokenArr.push(token)
