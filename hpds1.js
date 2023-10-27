@@ -62,7 +62,7 @@ async function getInfoNoSign(openid, userIndex) {
     let url = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/getinfonosign&openId=${openid}&app=QRCODEMINI&type=signin&saler=undefined`
     let urlObject = populateUrlObject(url)
    await httpRequest('get', urlObject)
-    let result = JSON.parse(httpResult)
+    let result = httpResult
 
     console.log(`=============== 账号[${userIndex}] ===============`)
     console.log(`账号[${result.data.userid}]登录成功，积分${result.data.total}`)
