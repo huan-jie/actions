@@ -208,13 +208,14 @@ function populateUrlObject(url, body = '') {
 }
 
 async function httpRequest(method, urlObject) {
-    let httpResult = null
+    httpResult = null
     return new Promise((resolve) => {
         axios.get(urlObject.url, {
             headers:　urlObject.headers
         }).then(response => {
             console.log(response.data)
-            resolve(response.data)
+            httpResult = response
+            resolve()
         }).catch(err => {
             console.log(err)
         })
