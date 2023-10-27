@@ -74,7 +74,8 @@ async function sign(openid) {
     let url = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/sign&openId=${openid}&app=QRCODEMINI&type=signin&saler=undefined`
     let urlObject = populateUrlObject(url)
     await httpRequest('get', urlObject)
-    let result = JSON.parse(httpResult)
+    // let result = JSON.parse(httpResult)
+    let result = httpResult
 
     if (result.code == 0) {
         console.log('签到成功\n')
@@ -87,7 +88,8 @@ async function sign(openid) {
         let url2 = `https://server.happy-ti.com/index.php?r=api/server/v1/integral/done&openId=${openid}&app=QRCODEMINI&advId=undefined&type=task_8&check=1&saler=undefined`
         let urlObject2 = populateUrlObject(url2)
         await httpRequest('get', urlObject2)
-        let result2 = JSON.parse(httpResult)
+        // let result2 = JSON.parse(httpResult)
+        let result2 = httpResult
 
         if (result2.code == 0) {
             console.log('观看签到视频成功\n')
@@ -111,8 +113,8 @@ async function task1(openid) {
         await delay(waitTime)
 
         await httpRequest('get', urlObject)
-        let result = JSON.parse(httpResult)
-
+        let result = httpResult
+        
         if (result.code == 0) {
             console.log('获取积分成功\n')
         } else {
@@ -134,7 +136,7 @@ async function task2(openid) {
         await delay(waitTime)
 
         await httpRequest('get', urlObject)
-        let result = JSON.parse(httpResult)
+        let result = httpResult
 
         if (result.code == 0) {
             console.log('获取积分成功\n')
@@ -157,7 +159,7 @@ async function task3(openid) {
         await delay(waitTime)
 
         await httpRequest('get', urlObject)
-        let result = JSON.parse(httpResult)
+        let result = httpResult
 
         if (result.code == 0) {
             console.log('获取积分成功\n')
@@ -180,7 +182,7 @@ async function task6(openid) {
         await delay(waitTime)
         
         await httpRequest('get', urlObject)
-        let result = JSON.parse(httpResult)
+        let result = httpResult
 
         if (result.code == 0) {
             console.log('获取积分成功\n')
