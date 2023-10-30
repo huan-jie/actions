@@ -1,4 +1,4 @@
-name: 定时执行 JavaScript 文件
+name: 嗨皮打水
 
 on:
   schedule:
