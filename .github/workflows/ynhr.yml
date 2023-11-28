@@ -1,0 +1,24 @@
+name: 云南人社岗前培训
+
+on:
+  schedule:
+    - cron: '48 14 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: node.js setup
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+
+    - name: 安装依赖
+      run: npm ci
+
+    - name: 运行脚本
+      run: node peixunYnhr.js
