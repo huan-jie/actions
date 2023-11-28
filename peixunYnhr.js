@@ -7,7 +7,7 @@ let courseId = 18
 let time = 240
 
 !(async () => {
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 40; i++) {
         await delay(60000)
         await addLeanLog()
         time += 60
