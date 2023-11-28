@@ -51,11 +51,13 @@ function populateUrlObject(url, body = '') {
 }
 
 async function httpRequest(method, urlObject) {
+    httpResult = null
     return new Promise((resolve) => {
         axios.post(urlObject.url, {
             headers:　urlObject.headers
         }).then(response => {
             console.log(response.data)
+            httpResult = response.data || {}
             resolve()
         }).catch(err => {
             console.log(err)
