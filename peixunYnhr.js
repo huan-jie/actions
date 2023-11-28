@@ -18,7 +18,7 @@ let time = 240
 async function addLeanLog() {
     let url = `https://api.peixun.ynhr.com/course-center/user/learn-log?type=${type}&sourceId=${sourceId}&courseSectionId=${courseSectionId}&courseId=${courseId}&time=${time}&lastPlayTime=${time}`
     let urlObject = populateUrlObject(url)
-    httpResult　＝　await httpRequest('post', urlObject)
+    await httpRequest('post', urlObject)
     let result = JSON.parse(httpResult.body)
 
     if (result.error == 0) {
