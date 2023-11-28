@@ -2,7 +2,7 @@ name: 云南人社岗前培训
 
 on:
   schedule:
-    - cron: '20 16 * * *'
+    - cron: '20 18 * * *'
 
 jobs:
   build:
