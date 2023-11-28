@@ -1,8 +1,11 @@
 name: 云南人社岗前培训
 
 on:
-  schedule:
-    - cron: '20 18 * * *'
+  # schedule:
+   # - cron: '20 18 * * *'
+  push:
+    branches:
+      - master
 
 jobs:
   build:
