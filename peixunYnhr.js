@@ -19,7 +19,7 @@ let authorization = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHR
 async function addLeanLog() {
     let url = `https://api.peixun.ynhr.com/course-center/user/learn-log?type=${type}&sourceId=${sourceId}&courseSectionId=${courseSectionId}&courseId=${courseId}&time=${time}&lastPlayTime=${time}`
     let urlObject = populateUrlObject(url)
-    httpResult　＝　await httpRequest('post', urlObject)
+    await httpRequest('post', urlObject)
     let result = httpResult.body
 
     if (result.error == 0) {
@@ -52,13 +52,13 @@ function populateUrlObject(url, body = '') {
 }
 
 async function httpRequest(method, urlObject) {
-    httpRequest = null
+    httpResult = null
     return new Promise((resolve) => {
         axios.post(urlObject.url, {
             headers:　urlObject.headers
         }).then(response => {
             console.log(response.data)
-            httpRequest = response.data
+            httpResult = response.data
             resolve()
         }).catch(err => {
             console.log(err)
