@@ -6,9 +6,9 @@ let courseSectionId = 47
 let courseId = 18
 let time = 240
 let authorization = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnBlaXh1bi55bmhyLmNvbS8vdXNlci9hdXRoL3Ntcy1jb2RlIiwiaWF0IjoxNzAxMjE5NDIyLCJleHAiOjE3MDEzMDU4MjIsIm5iZiI6MTcwMTIxOTQyMiwianRpIjoicEEwRElYV25hdnpMOTl1OCIsInN1YiI6IjEwNzE2IiwicHJ2IjoiYTVlMTkyODk5NWFkMmI4MmRiNTkyMDY5NjU3ODRmYmEyMGFlMDRmNCIsInVzZXJfdHlwZSI6NCwiY29tcGFueV9pZCI6MTN9.sXVE43fcAxnHnxMxRjBfIthqPRBUvS2wnFtSVcVExYk9zKxm2JjjJ4hHzoi4Y-LrLMPBcJLPqIqHqek7yHHjsw`
-    
+
 !(async () => {
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 10; i++) {
         await delay(60000)
         await addLeanLog()
         time += 60
@@ -19,8 +19,8 @@ let authorization = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHR
 async function addLeanLog() {
     let url = `https://api.peixun.ynhr.com/course-center/user/learn-log?type=${type}&sourceId=${sourceId}&courseSectionId=${courseSectionId}&courseId=${courseId}&time=${time}&lastPlayTime=${time}`
     let urlObject = populateUrlObject(url)
-    await httpRequest('post', urlObject)
-    let result = JSON.parse(httpResult.body)
+    httpResult　＝　await httpRequest('post', urlObject)
+    let result = httpResult.body
 
     if (result.error == 0) {
         console.log('保存成功\n')
@@ -52,14 +52,13 @@ function populateUrlObject(url, body = '') {
 }
 
 async function httpRequest(method, urlObject) {
-    httpResult = null
-    
+    httpRequest = null
     return new Promise((resolve) => {
         axios.post(urlObject.url, {
             headers:　urlObject.headers
         }).then(response => {
             console.log(response.data)
-            httpResult = response.data || {}
+            httpRequest = response.data
             resolve()
         }).catch(err => {
             console.log(err)
