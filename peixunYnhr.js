@@ -5,10 +5,11 @@ let sourceId = 8
 let courseSectionId = 47
 let courseId = 18
 let time = 240
-
+let authorization = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnBlaXh1bi55bmhyLmNvbS8vdXNlci9hdXRoL3Ntcy1jb2RlIiwiaWF0IjoxNzAxMjE5NDIyLCJleHAiOjE3MDEzMDU4MjIsIm5iZiI6MTcwMTIxOTQyMiwianRpIjoicEEwRElYV25hdnpMOTl1OCIsInN1YiI6IjEwNzE2IiwicHJ2IjoiYTVlMTkyODk5NWFkMmI4MmRiNTkyMDY5NjU3ODRmYmEyMGFlMDRmNCIsInVzZXJfdHlwZSI6NCwiY29tcGFueV9pZCI6MTN9.sXVE43fcAxnHnxMxRjBfIthqPRBUvS2wnFtSVcVExYk9zKxm2JjjJ4hHzoi4Y-LrLMPBcJLPqIqHqek7yHHjsw`
+    
 !(async () => {
-    for (let i = 0; i < 80; i++) {
-        await delay(61000)
+    for (let i = 0; i < 60; i++) {
+        await delay(60000)
         await addLeanLog()
         time += 60
     }
@@ -34,7 +35,7 @@ function populateUrlObject(url, body = '') {
         headers: {
             "Accept": "*/*",
             "Accept-Language": "zh-CN,zh;q=0.9",
-            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnBlaXh1bi55bmhyLmNvbS8vdXNlci9hdXRoL3Ntcy1jb2RlIiwiaWF0IjoxNzAxMTMyODcwLCJleHAiOjE3MDEyMTkyNzAsIm5iZiI6MTcwMTEzMjg3MCwianRpIjoibUNXRjhRMTBxTXVsNUxFTCIsInN1YiI6IjEwNzE2IiwicHJ2IjoiYTVlMTkyODk5NWFkMmI4MmRiNTkyMDY5NjU3ODRmYmEyMGFlMDRmNCIsInVzZXJfdHlwZSI6NCwiY29tcGFueV9pZCI6MTN9.JbWn9u60wq3QOi-Dplu-pZ_Iq85P5VKDXF1qpcWlIRIngNlUskzSu9OXq11rslpsacT25plOhM9_x6DnsMj_Tw",
+            "Authorization": authorization,
             "Content-Length": "0",
             "Origin": "https://peixun.ynhr.com",
             "Referer": "https://peixun.ynhr.com/",
@@ -52,6 +53,7 @@ function populateUrlObject(url, body = '') {
 
 async function httpRequest(method, urlObject) {
     httpResult = null
+    
     return new Promise((resolve) => {
         axios.post(urlObject.url, {
             headers:　urlObject.headers
