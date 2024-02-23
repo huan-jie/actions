@@ -2,7 +2,7 @@ name: 嗨皮打水
 
 on:
   schedule:
-    - cron: '26 8 * * *'
+    - cron: '26 0 * * *'
 
   push:
     branches:
@@ -20,6 +20,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '16'
+
+    - name: 设置 node 源
+      run: npm config set registry https://registry.npmjs.org/
 
     - name: 安装依赖
       run: npm ci
