@@ -22,8 +22,8 @@ jobs:
         node-version: '16'
 
     - name: 设置 node 源
-      run: npm cache clean --force
-           npm config set strict-ssl false
+      # run: npm cache clean --force
+      run: npm config set strict-ssl false
       # run: npm config set registry https://registry.npmjs.org/
 
     - name: 安装依赖
