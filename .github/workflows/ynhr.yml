@@ -5,7 +5,7 @@ on:
    # - cron: '20 18 * * *'
   push:
     branches:
-      - main
+      - ynhr
 
 jobs:
   build:
